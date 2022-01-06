@@ -1,0 +1,16 @@
+spring:
+  database:
+    driverClassName: org.postgresql.Driver
+  datasource:
+    plataform: postgres
+    url: jdbc:postgresql://localhost:5432/AccountDatabase
+    username: ad
+    password: admin
+  jpa:
+    database: POSTGRESQL
+    show-sql: true
+    hibernate:
+      ddl-auto: create-drop
+    properties:
+      hibernate:
+        format_sql: true
