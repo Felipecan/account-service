@@ -12,4 +12,15 @@ public enum StatusAccount {
 	;
 	
 	private int status;
+	
+	public static StatusAccount findStatus(int status) {
+		
+		for (StatusAccount sa : StatusAccount.values()) {
+			
+			if (sa.getStatus() == status)
+				return sa;
+		}
+		
+		return null;
+	}
 }

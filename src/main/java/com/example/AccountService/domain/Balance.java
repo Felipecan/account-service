@@ -28,4 +28,8 @@ public class Balance implements Serializable {
 
 	private Integer accountId;
 	private BigDecimal balanceValue;
+	
+	public Balance(Integer accountId) {
+		this.accountId = accountId;
+	}
 }

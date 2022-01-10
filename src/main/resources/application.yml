@@ -1,9 +1,17 @@
+app:
+  name: AccountService
+  services:
+    BalanceService:
+      name: BalanceService
+      host: http://localhost:8081
+server:
+  port : 8080
 spring:
   database:
     driverClassName: org.postgresql.Driver
   datasource:
     plataform: postgres
-    url: jdbc:postgresql://localhost:5432/AccountDatabase
+    url: jdbc:postgresql://localhost:5432/account_database
     username: ad
     password: admin
   jpa:
@@ -14,3 +22,8 @@ spring:
     properties:
       hibernate:
         format_sql: true
+  rabbitmq:
+    host: localhost
+    port: 5672
+    username: guest
+    password: guest

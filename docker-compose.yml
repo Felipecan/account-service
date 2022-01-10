@@ -1,0 +1,47 @@
+version: '3.5'
+
+services:
+  db_account:
+    container_name: db_account
+    image: postgres:12-alpine
+    restart: always
+    environment:
+      - POSTGRES_USER=root
+      - POSTGRES_PASSWORD=password
+      - APP_DB_USER=dev
+      - APP_DB_PASS=dev
+      - ACCOUNT_DB_NAME=account_database
+    ports:
+      - 54322:5432
+    volumes:
+      - ./db_scripts:/docker-entrypoint-initdb.d
+    networks:
+      - db_net_2
+  account-service:
+    container_name: account-service
+    image: account-service:latest
+    environment:
+      - APP_SERVICES_BALANCESERVICE_HOST=http://balance-service:8081
+      - SPRING_DATASOURCE_URL=jdbc:postgresql://db_account:5432/account_database
+      - SPRING_DATASOURCE_USERNAME=root
+      - SPRING_DATASOURCE_PASSWORD=password
+      - SPRING_RABBITMQ_HOST=rabbitmq
+    build:
+      context: .  
+    ports:
+      - 8080:8080
+    restart: always  
+    networks:
+      - db_net_2
+      - services_net
+      - rabbit_net
+    depends_on:
+      - db_account
+networks:
+  db_net_2:
+    name: db_net_2
+  services_net:
+    external: true
+  rabbit_net:
+    external: true
+   
