@@ -68,4 +68,4 @@ Ao realizar a criação de uma conta, o serviço cria um registro inatívo para 
 
 1. [financial-service](https://github.com/Felipecan/financial-service.git)
 
-2. [account-service](https://github.com/Felipecan/account-service.git)
+2. [balance-service](https://github.com/Felipecan/balance-service.git)
